@@ -15,7 +15,7 @@ class AppCoordinator {
     }
     
     func start() {
-        let vc = OnboardingVC()
+        let vc = MainVC()
         let nav = UINavigationController(rootViewController: vc)
         window.rootViewController = nav
         window.rootViewController?.view.backgroundColor = .systemBackground
