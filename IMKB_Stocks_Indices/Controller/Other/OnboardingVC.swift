@@ -34,6 +34,22 @@ class OnboardingVC: UIViewController {
         view.addSubview(button)
         
         button.addTarget(self, action: #selector(didTapButton), for: .touchUpInside)
+        
+        AuthManager.shared.handshake(completion: {result in
+            if result {
+                APICaller.shared.fetchStocks(completion: {result in
+                    switch result {
+                    case .success(_):
+                        break
+                    case .failure(_):
+                        break
+                    }
+                })
+                
+            }else {
+               print("false")
+            }
+        })
     }
     
     override func viewDidLayoutSubviews() {

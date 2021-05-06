@@ -9,5 +9,6 @@ target 'IMKB_Stocks_Indices' do
 	
 pod 'Charts'
 pod 'SideMenu'
+pod 'CryptoSwift', '~> 1.4.0'
 
 end

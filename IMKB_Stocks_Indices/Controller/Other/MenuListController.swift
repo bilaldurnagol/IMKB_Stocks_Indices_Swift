@@ -17,10 +17,6 @@ class MenuListController: UITableViewController {
         "Hacme Göre - 100"
     ]
     
-
-    
-
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
