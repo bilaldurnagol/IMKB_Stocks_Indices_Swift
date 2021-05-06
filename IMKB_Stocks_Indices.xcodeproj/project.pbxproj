@@ -3,11 +3,12 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		0776DAD598B250D5E72F9D2C /* Pods_IMKB_Stocks_Indices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55D15616F7B35857C0C05A66 /* Pods_IMKB_Stocks_Indices.framework */; };
+		B527DECD264412410075F169 /* MenuListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B527DECC264412410075F169 /* MenuListController.swift */; };
 		B5F95CAB2642D2330078B38A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F95CAA2642D2330078B38A /* AppDelegate.swift */; };
 		B5F95CAD2642D2330078B38A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F95CAC2642D2330078B38A /* SceneDelegate.swift */; };
 		B5F95CAF2642D2330078B38A /* OnboardingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F95CAE2642D2330078B38A /* OnboardingVC.swift */; };
@@ -26,6 +27,7 @@
 
 /* Begin PBXFileReference section */
 		55D15616F7B35857C0C05A66 /* Pods_IMKB_Stocks_Indices.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_IMKB_Stocks_Indices.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B527DECC264412410075F169 /* MenuListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuListController.swift; sourceTree = "<group>"; };
 		B5F95CA72642D2330078B38A /* IMKB_Stocks_Indices.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IMKB_Stocks_Indices.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5F95CAA2642D2330078B38A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B5F95CAC2642D2330078B38A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -64,7 +66,6 @@
 				DC99289199F2FE4A763E04A6 /* Pods-IMKB_Stocks_Indices.debug.xcconfig */,
 				FD0D17AFD5D27F2571EA4534 /* Pods-IMKB_Stocks_Indices.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -184,6 +185,7 @@
 				B5F95CAE2642D2330078B38A /* OnboardingVC.swift */,
 				B5F95CD726432A2A0078B38A /* DetailsVC.swift */,
 				B5F95CD926432B580078B38A /* DetailsInfoView.swift */,
+				B527DECC264412410075F169 /* MenuListController.swift */,
 			);
 			path = Other;
 			sourceTree = "<group>";
@@ -314,6 +316,7 @@
 				B5F95CCE2642EE5D0078B38A /* SearchResultsVC.swift in Sources */,
 				B5F95CC62642D5030078B38A /* AppCoordinator.swift in Sources */,
 				B5F95CDA26432B580078B38A /* DetailsInfoView.swift in Sources */,
+				B527DECD264412410075F169 /* MenuListController.swift in Sources */,
 				B5F95CCA2642E01F0078B38A /* MainVC.swift in Sources */,
 				B5F95CAF2642D2330078B38A /* OnboardingVC.swift in Sources */,
 				B5F95CD326431ACC0078B38A /* StocksTableViewCell.swift in Sources */,

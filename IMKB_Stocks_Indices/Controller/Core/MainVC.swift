@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SideMenu
 
 class MainVC: UIViewController {
     
@@ -24,9 +25,11 @@ class MainVC: UIViewController {
         return tableView
     }()
     
+    var menu: SideMenuNavigationController?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "IMKB Hisse Senetleri/Endeksler"
+        setNavbar()
         view.backgroundColor = .systemBackground
         
         searchController.searchResultsUpdater = self
@@ -37,11 +40,44 @@ class MainVC: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         
+        menu = SideMenuNavigationController(rootViewController: MenuListController())
+        setMenu()
+        
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         tableView.frame = view.bounds
+    }
+    
+    //navigation bar
+    private func setNavbar() {
+        title = "IMKB Hisse Senetleri/Endeksler"
+        
+        navigationItem.leftBarButtonItem = UIBarButtonItem(
+            image: UIImage(systemName: "line.horizontal.3"),
+            style: .plain,
+            target: self,
+            action: #selector(didTapMenu)
+        )
+    }
+    
+    //menu
+    private func setMenu() {
+        menu?.leftSide = true
+        menu?.setNavigationBarHidden(true, animated: true)
+        //slide left touch
+        SideMenuManager.default.leftMenuNavigationController = menu
+        SideMenuManager.default.addPanGestureToPresent(toView: self.view)
+    }
+    
+    
+    
+    
+    //MARK: - objc
+    
+    @objc private func didTapMenu() {
+        present(menu!, animated: true)
     }
 }
 
@@ -77,6 +113,7 @@ extension MainVC: UITableViewDelegate,UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        
         var labelArray = [UILabel]()
         let headerTitle = ["Sembol", "Fiyat", "Fark", "Hacim", "Alış", "Satış", "Değişim"]
         
@@ -96,7 +133,6 @@ extension MainVC: UITableViewDelegate,UITableViewDataSource {
         
         stackView.axis = .horizontal
         stackView.distribution = .fillEqually
-        
         stackView.backgroundColor = .secondarySystemBackground
         
         return stackView

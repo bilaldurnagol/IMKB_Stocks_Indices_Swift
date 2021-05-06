@@ -8,5 +8,6 @@ target 'IMKB_Stocks_Indices' do
   # Pods for IMKB_Stocks_Indices
 	
 pod 'Charts'
+pod 'SideMenu'
 
 end
