@@ -90,6 +90,17 @@ class StocksTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        symbolLabel.text = nil
+        priceLabel.text = nil
+        differenceLabel.text = nil
+        volumeLabel.text = nil
+        sellLabel.text = nil
+        buyLabel.text = nil
+        changeLabel.text = nil
+    }
+    
     override func layoutSubviews() {
         super.layoutSubviews()
         stackView.frame = contentView.bounds

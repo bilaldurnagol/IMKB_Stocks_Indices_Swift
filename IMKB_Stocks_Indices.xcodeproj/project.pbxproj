@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0776DAD598B250D5E72F9D2C /* Pods_IMKB_Stocks_Indices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55D15616F7B35857C0C05A66 /* Pods_IMKB_Stocks_Indices.framework */; };
 		B5F95CAB2642D2330078B38A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F95CAA2642D2330078B38A /* AppDelegate.swift */; };
 		B5F95CAD2642D2330078B38A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F95CAC2642D2330078B38A /* SceneDelegate.swift */; };
 		B5F95CAF2642D2330078B38A /* OnboardingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F95CAE2642D2330078B38A /* OnboardingVC.swift */; };
@@ -19,9 +20,12 @@
 		B5F95CCE2642EE5D0078B38A /* SearchResultsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F95CCD2642EE5D0078B38A /* SearchResultsVC.swift */; };
 		B5F95CD0264312440078B38A /* TestVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F95CCF264312440078B38A /* TestVC.swift */; };
 		B5F95CD326431ACC0078B38A /* StocksTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F95CD226431ACC0078B38A /* StocksTableViewCell.swift */; };
+		B5F95CD826432A2A0078B38A /* DetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F95CD726432A2A0078B38A /* DetailsVC.swift */; };
+		B5F95CDA26432B580078B38A /* DetailsInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F95CD926432B580078B38A /* DetailsInfoView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		55D15616F7B35857C0C05A66 /* Pods_IMKB_Stocks_Indices.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_IMKB_Stocks_Indices.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5F95CA72642D2330078B38A /* IMKB_Stocks_Indices.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IMKB_Stocks_Indices.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5F95CAA2642D2330078B38A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B5F95CAC2642D2330078B38A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -36,6 +40,10 @@
 		B5F95CCD2642EE5D0078B38A /* SearchResultsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsVC.swift; sourceTree = "<group>"; };
 		B5F95CCF264312440078B38A /* TestVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestVC.swift; sourceTree = "<group>"; };
 		B5F95CD226431ACC0078B38A /* StocksTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StocksTableViewCell.swift; sourceTree = "<group>"; };
+		B5F95CD726432A2A0078B38A /* DetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsVC.swift; sourceTree = "<group>"; };
+		B5F95CD926432B580078B38A /* DetailsInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsInfoView.swift; sourceTree = "<group>"; };
+		DC99289199F2FE4A763E04A6 /* Pods-IMKB_Stocks_Indices.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IMKB_Stocks_Indices.debug.xcconfig"; path = "Target Support Files/Pods-IMKB_Stocks_Indices/Pods-IMKB_Stocks_Indices.debug.xcconfig"; sourceTree = "<group>"; };
+		FD0D17AFD5D27F2571EA4534 /* Pods-IMKB_Stocks_Indices.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IMKB_Stocks_Indices.release.xcconfig"; path = "Target Support Files/Pods-IMKB_Stocks_Indices/Pods-IMKB_Stocks_Indices.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,17 +51,38 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0776DAD598B250D5E72F9D2C /* Pods_IMKB_Stocks_Indices.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4614CAB216A9E09E97A12FAC /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				DC99289199F2FE4A763E04A6 /* Pods-IMKB_Stocks_Indices.debug.xcconfig */,
+				FD0D17AFD5D27F2571EA4534 /* Pods-IMKB_Stocks_Indices.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		5867038E2F03C0B16B2421B2 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				55D15616F7B35857C0C05A66 /* Pods_IMKB_Stocks_Indices.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		B5F95C9E2642D2330078B38A = {
 			isa = PBXGroup;
 			children = (
 				B5F95CA92642D2330078B38A /* IMKB_Stocks_Indices */,
 				B5F95CA82642D2330078B38A /* Products */,
+				4614CAB216A9E09E97A12FAC /* Pods */,
+				5867038E2F03C0B16B2421B2 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -82,10 +111,8 @@
 		B5F95CBE2642D3B90078B38A /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				B5F95CAE2642D2330078B38A /* OnboardingVC.swift */,
-				B5F95CC92642E01F0078B38A /* MainVC.swift */,
-				B5F95CCD2642EE5D0078B38A /* SearchResultsVC.swift */,
-				B5F95CCF264312440078B38A /* TestVC.swift */,
+				B5F95CD626432A0F0078B38A /* Core */,
+				B5F95CD526432A020078B38A /* Other */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -149,6 +176,26 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
+		B5F95CD526432A020078B38A /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				B5F95CCF264312440078B38A /* TestVC.swift */,
+				B5F95CCD2642EE5D0078B38A /* SearchResultsVC.swift */,
+				B5F95CAE2642D2330078B38A /* OnboardingVC.swift */,
+				B5F95CD726432A2A0078B38A /* DetailsVC.swift */,
+				B5F95CD926432B580078B38A /* DetailsInfoView.swift */,
+			);
+			path = Other;
+			sourceTree = "<group>";
+		};
+		B5F95CD626432A0F0078B38A /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				B5F95CC92642E01F0078B38A /* MainVC.swift */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -156,9 +203,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B5F95CBB2642D2360078B38A /* Build configuration list for PBXNativeTarget "IMKB_Stocks_Indices" */;
 			buildPhases = (
+				3A1DB11B7628D9F18F08D914 /* [CP] Check Pods Manifest.lock */,
 				B5F95CA32642D2330078B38A /* Sources */,
 				B5F95CA42642D2330078B38A /* Frameworks */,
 				B5F95CA52642D2330078B38A /* Resources */,
+				E1A6424692E5C0175AAF5800 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -214,6 +263,48 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		3A1DB11B7628D9F18F08D914 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-IMKB_Stocks_Indices-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E1A6424692E5C0175AAF5800 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-IMKB_Stocks_Indices/Pods-IMKB_Stocks_Indices-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-IMKB_Stocks_Indices/Pods-IMKB_Stocks_Indices-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-IMKB_Stocks_Indices/Pods-IMKB_Stocks_Indices-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		B5F95CA32642D2330078B38A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -222,12 +313,14 @@
 				B5F95CD0264312440078B38A /* TestVC.swift in Sources */,
 				B5F95CCE2642EE5D0078B38A /* SearchResultsVC.swift in Sources */,
 				B5F95CC62642D5030078B38A /* AppCoordinator.swift in Sources */,
+				B5F95CDA26432B580078B38A /* DetailsInfoView.swift in Sources */,
 				B5F95CCA2642E01F0078B38A /* MainVC.swift in Sources */,
 				B5F95CAF2642D2330078B38A /* OnboardingVC.swift in Sources */,
 				B5F95CD326431ACC0078B38A /* StocksTableViewCell.swift in Sources */,
 				B5F95CC82642D8110078B38A /* UIView+Extensions.swift in Sources */,
 				B5F95CAB2642D2330078B38A /* AppDelegate.swift in Sources */,
 				B5F95CAD2642D2330078B38A /* SceneDelegate.swift in Sources */,
+				B5F95CD826432A2A0078B38A /* DetailsVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -371,6 +464,7 @@
 		};
 		B5F95CBC2642D2360078B38A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DC99289199F2FE4A763E04A6 /* Pods-IMKB_Stocks_Indices.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -390,6 +484,7 @@
 		};
 		B5F95CBD2642D2360078B38A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FD0D17AFD5D27F2571EA4534 /* Pods-IMKB_Stocks_Indices.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
