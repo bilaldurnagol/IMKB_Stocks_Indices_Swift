@@ -34,7 +34,7 @@ class DetailsLineChartView: UIView, ChartViewDelegate {
         
         //i used this repo
         //https://github.com/danielgindi/Charts/blob/master/ChartsDemo-iOS/Objective-C/Components/BalloonMarker.swift
-
+        
         let marker: BalloonMarker = BalloonMarker(
             color: UIColor.black,
             font: UIFont(name: "Helvetica", size: 15)!,

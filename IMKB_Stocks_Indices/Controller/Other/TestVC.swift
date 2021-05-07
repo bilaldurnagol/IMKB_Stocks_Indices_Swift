@@ -6,38 +6,58 @@
 //
 
 import UIKit
+import CryptoSwift
 
 class TestVC: UIViewController {
+    let symbol = "2CiJq7848elBewouw9GMkQ=="
+    let aesKey = "oSU7KTuH6itLjbsmPcxSRDn/6/lHY8Yy2FEfmcdHBBY="
+    let aesIV = "bHJNgmBtgtJKgBwemNXafw=="
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemBackground
+
+        print(aesCrypto(with: "all"))
+        aesDecrypt()
+//        print(base64ToByteArray(base64String: symbol))
+    }
+    func aesDecrypt() {
         
-        var labelArray = [UILabel]()
-        let headerTitle = ["Sembol", "Fiyat", "Fark", "Hacim", "Alış", "Satış", "Değişim"]
+        let key = [UInt8](base64: aesKey)
+        let iv = [UInt8](base64: aesIV)
         
-        for i in 0..<7 {
-            let label = UILabel()
-            label.text = headerTitle[i]
-            label.textAlignment = .center
-            label.font = .systemFont(ofSize: 12, weight: .medium)
-            label.widthAnchor.constraint(equalToConstant: view.width).isActive = true
-            label.heightAnchor.constraint(equalToConstant: view.height).isActive = true
-            labelArray.append(label)
-        }
+        let aes = try? AES(key: key, blockMode: CBC(iv: iv))
         
-        let stackView = UIStackView(arrangedSubviews: labelArray)
-        stackView.frame = CGRect(x: 0, y: 0, width: view.width, height: 50)
-        stackView.center = view.center
+//        let uintArray = base64ToByteArray(base64String: symbol)!
+//        print(uintArray)
         
-        stackView.axis = .horizontal
-        stackView.distribution = .fillEqually
+        let cipherdata = Data(base64Encoded: symbol)
+        let ciphertext = try? aes?.decrypt(cipherdata!.bytes)
+        let token = String(bytes:ciphertext!, encoding:String.Encoding.utf8)
+        print(token)
+    }
+
+    
+    func aesCrypto(with period: String) -> String? {
         
+        let key = [UInt8](base64: aesKey)
+        let iv = [UInt8](base64: aesIV)
         
-        view.addSubview(stackView)
+        let aes = try? AES(key: key, blockMode: CBC(iv: iv))
+        let cipherText = try? aes?.encrypt(Array(period.utf8))
+        print(cipherText)
+        let base64String = cipherText?.toBase64()
+        return base64String
     }
     
-    override func viewDidLayoutSubviews() {
-        
+    func base64ToByteArray(base64String: String) -> [UInt8]? {
+        if let nsdata = NSData(base64Encoded: base64String, options: []) {
+            
+            var bytes = [UInt8](repeating: 0, count: nsdata.length)
+              nsdata.getBytes(&bytes)
+              return bytes
+          }
+          return nil // Invalid input
     }
+
 }
+

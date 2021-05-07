@@ -34,7 +34,7 @@ class APICaller {
         guard let url = URL(string: Constant.stocksURL) else {return}
         
         let body = [
-            "period": aesCrypto(with: period)
+            "period": AesCryptoManager.shared.aesEncryption(with: period)
         ]
         
         let bodyData = try? JSONSerialization.data(withJSONObject: body, options: .init())
@@ -65,7 +65,8 @@ class APICaller {
         guard let url = URL(string: Constant.detailsURL) else {return}
         
         let body = [
-            "id": aesCrypto(with: id)
+            
+            "id": AesCryptoManager.shared.aesEncryption(with: id)
         ]
         
         let bodyData = try? JSONSerialization.data(withJSONObject: body, options: .init())
@@ -89,16 +90,4 @@ class APICaller {
             }
         }).resume()
     }
-    
-    func aesCrypto(with period: String) -> String? {
-        
-        let key = [UInt8](base64: aesKey ?? "")
-        let iv = [UInt8](base64: aesIV ?? "")
-        
-        let aes = try? AES(key: key, blockMode: CBC(iv: iv))
-        let cipherText = try? aes?.encrypt(Array(period.utf8))
-        let base64String = cipherText?.toBase64()
-        return base64String
-    }
-
 }

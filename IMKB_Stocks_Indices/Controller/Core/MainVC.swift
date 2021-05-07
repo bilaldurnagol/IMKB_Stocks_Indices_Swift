@@ -80,6 +80,7 @@ class MainVC: UIViewController {
             target: self,
             action: #selector(didTapMenu)
         )
+        navigationItem.leftBarButtonItem?.tintColor = .label
     }
     
     //menu

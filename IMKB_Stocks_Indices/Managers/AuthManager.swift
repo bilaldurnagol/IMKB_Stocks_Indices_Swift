@@ -13,10 +13,10 @@ final class AuthManager {
     static let shared = AuthManager()
     
     struct Contants {
-        static let deviceId = "01234567-89ABCDEF-01234567-89ABCDEF"
-        static let systemVersion = "12.2"
-        static let platformName = "iOS"
-        static let deviceModel = "iPhone XS Max"
+        static let deviceId = UIDevice.current.identifierForVendor!.uuidString
+        static let systemVersion = UIDevice.current.systemVersion
+        static let platformName = UIDevice.current.systemName
+        static let deviceModel = UIDevice.modelName
         static let manifacturer = "Apple"
         static let handshakeURL = "https://mobilechallenge.veripark.com/api/handshake/start"
     }

@@ -184,7 +184,7 @@ final class DetailsInfoView: UIView {
     }
     
     func configure(with viewModel: DetailsInfoViewVM) {
-        symbolLabel.text = "Sembol: " + viewModel.symbol
+        symbolLabel.text = "Sembol: " + AesCryptoManager.shared.aesDecrypt(symbol: viewModel.symbol)
         priceLabel.text = "Fiyat: " + String(viewModel.price)
         differenceLabel.text = "% Fark: " + String(viewModel.difference)
         volumeLabel.text = "Hacim: " + String(viewModel.volume)

@@ -105,7 +105,7 @@ class StocksTableViewCell: UITableViewCell {
     
     func configure(stock: Stock?) {
         guard let stock = stock else { return }
-        symbolLabel.text = stock.symbol
+        symbolLabel.text = AesCryptoManager.shared.aesDecrypt(symbol: stock.symbol)
         priceLabel.text = String(stock.price)
         differenceLabel.text = String(stock.difference)
         volumeLabel.text = String(stock.volume)
