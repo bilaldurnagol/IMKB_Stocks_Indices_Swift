@@ -10,6 +10,8 @@ import SideMenu
 
 class MainVC: UIViewController {
     
+    private var stocks: StocksResponse
+    
     private let searchController: UISearchController = {
         let vc = UISearchController(searchResultsController: SearchResultsVC())
         vc.searchBar.placeholder = "Ara"
@@ -27,6 +29,15 @@ class MainVC: UIViewController {
     
     var menu: SideMenuNavigationController?
     
+    init(stocks: StocksResponse) {
+        self.stocks = stocks
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setNavbar()
@@ -42,7 +53,6 @@ class MainVC: UIViewController {
         
         menu = SideMenuNavigationController(rootViewController: MenuListController())
         setMenu()
-        
     }
     
     override func viewDidLayoutSubviews() {
@@ -72,8 +82,6 @@ class MainVC: UIViewController {
     }
     
     
-    
-    
     //MARK: - objc
     
     @objc private func didTapMenu() {
@@ -83,10 +91,11 @@ class MainVC: UIViewController {
 
 extension MainVC: UITableViewDelegate,UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 20
+        return stocks.stocks.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let stock = stocks.stocks[indexPath.row]
         
         guard let cell = tableView.dequeueReusableCell(
             withIdentifier: StocksTableViewCell.identifier,
@@ -101,15 +110,28 @@ extension MainVC: UITableViewDelegate,UITableViewDataSource {
         } else {
             cell.backgroundColor = .secondarySystemBackground
         }
+        
+        cell.configure(stock: stock)
+        
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        let vc = DetailsVC()
-        vc.modalPresentationStyle = .fullScreen
-        navigationController?.pushViewController(vc, animated: true)
+        let stock = stocks.stocks[indexPath.row]
+        let id = String(stock.id)
+        APICaller.shared.getDetailsStock(with: id, completion: {[weak self] result in
+            switch result {
+            case .failure(let error): print(error.localizedDescription)
+            case .success(let stock):
+                DispatchQueue.main.async {
+                    let vc = DetailsVC(stock: stock)
+                    vc.modalPresentationStyle = .fullScreen
+                    self?.navigationController?.pushViewController(vc, animated: true)
+                }
+            }
+        })
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -144,6 +166,4 @@ extension MainVC: UISearchResultsUpdating, UISearchBarDelegate {
     func updateSearchResults(for searchController: UISearchController) {
         
     }
-    
-    
 }

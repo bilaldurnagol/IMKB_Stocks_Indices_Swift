@@ -25,6 +25,8 @@ class OnboardingVC: UIViewController {
         return button
     }()
     
+    private var stocks: StocksResponse?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "IMKB Hisse ve Endeksler"
@@ -37,17 +39,16 @@ class OnboardingVC: UIViewController {
         
         AuthManager.shared.handshake(completion: {result in
             if result {
-                APICaller.shared.fetchStocks(completion: {result in
+                APICaller.shared.fetchStocks(completion: {[weak self] result in
                     switch result {
-                    case .success(_):
-                        break
+                    case .success(let stocks):
+                        self?.stocks = stocks
                     case .failure(_):
                         break
                     }
                 })
-                
             }else {
-               print("false")
+                print("false")
             }
         })
     }
@@ -73,7 +74,8 @@ class OnboardingVC: UIViewController {
     //MARK: Objc Funcs
     
     @objc private func didTapButton() {
-        let vc = MainVC()
+        guard let stocks = stocks else {return}
+        let vc = MainVC(stocks: stocks)
         let nav = UINavigationController(rootViewController: vc)
         nav.modalPresentationStyle = .fullScreen
         present(nav, animated: true)

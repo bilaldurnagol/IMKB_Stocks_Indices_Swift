@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		0776DAD598B250D5E72F9D2C /* Pods_IMKB_Stocks_Indices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55D15616F7B35857C0C05A66 /* Pods_IMKB_Stocks_Indices.framework */; };
 		B527DECD264412410075F169 /* MenuListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B527DECC264412410075F169 /* MenuListController.swift */; };
+		B544E63426454E1100B2A59A /* StockDetailsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B544E63326454E1100B2A59A /* StockDetailsResponse.swift */; };
+		B544E6362645500F00B2A59A /* Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = B544E6352645500F00B2A59A /* Status.swift */; };
+		B544E638264557C300B2A59A /* BalloonMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B544E637264557C300B2A59A /* BalloonMaker.swift */; };
 		B58BD7852644690E00DFF724 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58BD7842644690E00DFF724 /* AuthManager.swift */; };
 		B58BD787264473BC00DFF724 /* AuthResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58BD786264473BC00DFF724 /* AuthResponse.swift */; };
 		B58BD78B2644826E00DFF724 /* APICaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58BD78A2644826E00DFF724 /* APICaller.swift */; };
@@ -32,6 +35,9 @@
 /* Begin PBXFileReference section */
 		55D15616F7B35857C0C05A66 /* Pods_IMKB_Stocks_Indices.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_IMKB_Stocks_Indices.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B527DECC264412410075F169 /* MenuListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuListController.swift; sourceTree = "<group>"; };
+		B544E63326454E1100B2A59A /* StockDetailsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockDetailsResponse.swift; sourceTree = "<group>"; };
+		B544E6352645500F00B2A59A /* Status.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Status.swift; sourceTree = "<group>"; };
+		B544E637264557C300B2A59A /* BalloonMaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalloonMaker.swift; sourceTree = "<group>"; };
 		B58BD7842644690E00DFF724 /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
 		B58BD786264473BC00DFF724 /* AuthResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthResponse.swift; sourceTree = "<group>"; };
 		B58BD78A2644826E00DFF724 /* APICaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICaller.swift; sourceTree = "<group>"; };
@@ -132,6 +138,7 @@
 				B5F95CAC2642D2330078B38A /* SceneDelegate.swift */,
 				B5F95CAA2642D2330078B38A /* AppDelegate.swift */,
 				B5F95CC52642D5030078B38A /* AppCoordinator.swift */,
+				B544E637264557C300B2A59A /* BalloonMaker.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -152,6 +159,8 @@
 			children = (
 				B58BD786264473BC00DFF724 /* AuthResponse.swift */,
 				B58BD78C264497CA00DFF724 /* StocksResponse.swift */,
+				B544E63326454E1100B2A59A /* StockDetailsResponse.swift */,
+				B544E6352645500F00B2A59A /* Status.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -329,6 +338,8 @@
 				B5F95CC62642D5030078B38A /* AppCoordinator.swift in Sources */,
 				B58BD7852644690E00DFF724 /* AuthManager.swift in Sources */,
 				B58BD787264473BC00DFF724 /* AuthResponse.swift in Sources */,
+				B544E6362645500F00B2A59A /* Status.swift in Sources */,
+				B544E63426454E1100B2A59A /* StockDetailsResponse.swift in Sources */,
 				B58BD78D264497CA00DFF724 /* StocksResponse.swift in Sources */,
 				B5F95CDA26432B580078B38A /* DetailsInfoView.swift in Sources */,
 				B527DECD264412410075F169 /* MenuListController.swift in Sources */,
@@ -339,6 +350,7 @@
 				B5F95CC82642D8110078B38A /* UIView+Extensions.swift in Sources */,
 				B5F95CAB2642D2330078B38A /* AppDelegate.swift in Sources */,
 				B5F95CAD2642D2330078B38A /* SceneDelegate.swift in Sources */,
+				B544E638264557C300B2A59A /* BalloonMaker.swift in Sources */,
 				B5F95CD826432A2A0078B38A /* DetailsVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

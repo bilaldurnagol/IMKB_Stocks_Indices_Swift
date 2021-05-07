@@ -15,13 +15,3 @@ struct AuthResponse: Codable {
     let lifeTime: String
     let status: Status
 }
-
-struct Status: Codable {
-    let isSuccess: Bool
-    let error: ErrorResponse
-}
-
-struct ErrorResponse: Codable {
-    let code: Int
-    let message: String?
-}

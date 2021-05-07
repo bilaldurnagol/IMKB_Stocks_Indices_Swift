@@ -9,6 +9,23 @@ import UIKit
 
 final class DetailsInfoView: UIView {
     
+    struct DetailsInfoViewVM {
+        let isDown: Bool
+        let isUp: Bool
+        let bid: Float
+        let channge: Float
+        let count: Int
+        let difference: Float
+        let offer: Float
+        let highest: Float
+        let lowest: Float
+        let maximum: Float
+        let minimum: Float
+        let price: Float
+        let volume: Float
+        let symbol: String
+    }
+    
     private let symbolLabel: UILabel = {
         let label = UILabel()
         label.text = "HALKB"
@@ -159,5 +176,20 @@ final class DetailsInfoView: UIView {
             width: width/2-10,
             height: height
         )
+    }
+    
+    func configure(with viewModel: DetailsInfoViewVM) {
+        symbolLabel.text = "Sembol: " + viewModel.symbol
+        priceLabel.text = "Fiyat: " + String(viewModel.price)
+        differenceLabel.text = "% Fark: " + String(viewModel.difference)
+        volumeLabel.text = "Hacim: " + String(viewModel.volume)
+        buyLabel.text = "Alış: " + String(viewModel.bid)
+        sellLabel.text = "Satış: " + String(viewModel.offer)
+        dailyLowLabel.text = "Günlük Düşük: " + String(viewModel.lowest)
+        dailyHighLabel.text = "Günlük Yüksek: " +  String(viewModel.highest)
+        totalLabel.text = "Adet: " + String(viewModel.count)
+        highLabel.text = "Tavan: " + String(viewModel.maximum)
+        lowLabel.text = "Taban: " + String(viewModel.minimum)
+        changeLabel.text = "Değişim: "
     }
 }
