@@ -103,8 +103,8 @@ class StocksTableViewCell: UITableViewCell {
         stackView.frame = contentView.bounds
     }
     
-    func configure(stock: Stock) {
-        
+    func configure(stock: Stock?) {
+        guard let stock = stock else { return }
         symbolLabel.text = stock.symbol
         priceLabel.text = String(stock.price)
         differenceLabel.text = String(stock.difference)

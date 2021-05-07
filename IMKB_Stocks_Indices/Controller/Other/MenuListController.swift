@@ -7,7 +7,23 @@
 
 import UIKit
 
+enum Periods: String, CaseIterable {
+    case all = "all"
+    case increasing = "increasing"
+    case decreasing = "decreasing"
+    case volume30 = "volume30"
+    case volume50 = "volume50"
+    case volume100 = "volume100"
+}
+
+protocol MenuListControllerDelegate: AnyObject {
+    func clickedMenu(with period: String)
+}
+
 class MenuListController: UITableViewController {
+    
+    var delegate: MenuListControllerDelegate?
+    
     private let items = [
         "Hisse ve Endeksler",
         "Yükselenler",
@@ -26,7 +42,6 @@ class MenuListController: UITableViewController {
         tableView.separatorStyle = .none
     }
     
-    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
     }
@@ -39,13 +54,15 @@ class MenuListController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         cell.textLabel?.text = items[indexPath.row]
-       
+        
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
+        let period = Periods.allCases[indexPath.row]
+        delegate?.clickedMenu(with: period.rawValue)
         
     }
     

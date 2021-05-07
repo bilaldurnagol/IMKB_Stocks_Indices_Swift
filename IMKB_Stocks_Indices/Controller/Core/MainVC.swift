@@ -8,9 +8,12 @@
 import UIKit
 import SideMenu
 
+
 class MainVC: UIViewController {
     
-    private var stocks: StocksResponse
+    private var stocks: StocksResponse?
+    
+    var period = "all"
     
     private let searchController: UISearchController = {
         let vc = UISearchController(searchResultsController: SearchResultsVC())
@@ -29,14 +32,6 @@ class MainVC: UIViewController {
     
     var menu: SideMenuNavigationController?
     
-    init(stocks: StocksResponse) {
-        self.stocks = stocks
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,9 +47,22 @@ class MainVC: UIViewController {
         view.addSubview(tableView)
         tableView.delegate = self
         tableView.dataSource = self
-        
-        menu = SideMenuNavigationController(rootViewController: MenuListController())
+        let vc = MenuListController()
+        vc.delegate = self
+        menu = SideMenuNavigationController(rootViewController: vc)
         setMenu()
+        
+        APICaller.shared.fetchStocks(period: period ,completion: {[weak self] result in
+            switch result {
+            case .success(let stocks):
+                DispatchQueue.main.async {
+                    self?.stocks = stocks
+                    self?.tableView.reloadData()
+                }
+            case .failure(_):
+                break
+            }
+        })
     }
     
     override func viewDidLayoutSubviews() {
@@ -87,17 +95,20 @@ class MainVC: UIViewController {
     //MARK: - objc
     
     @objc private func didTapMenu() {
+        let vc = MenuListController()
+        vc.delegate = self
         present(menu!, animated: true)
+        
     }
 }
 
 extension MainVC: UITableViewDelegate,UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return stocks.stocks.count
+        return stocks?.stocks.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let stock = stocks.stocks[indexPath.row]
+        let stock = stocks?.stocks[indexPath.row]
         
         guard let cell = tableView.dequeueReusableCell(
             withIdentifier: StocksTableViewCell.identifier,
@@ -121,7 +132,7 @@ extension MainVC: UITableViewDelegate,UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        let stock = stocks.stocks[indexPath.row]
+        guard let stock = stocks?.stocks[indexPath.row] else {return}
         let id = String(stock.id)
         APICaller.shared.getDetailsStock(with: id, completion: {[weak self] result in
             switch result {
@@ -166,5 +177,22 @@ extension MainVC: UITableViewDelegate,UITableViewDataSource {
 extension MainVC: UISearchResultsUpdating, UISearchBarDelegate {
     func updateSearchResults(for searchController: UISearchController) {
         
+    }
+}
+
+extension MainVC: MenuListControllerDelegate {
+    func clickedMenu(with period: String) {
+        self.period = period
+        APICaller.shared.fetchStocks(period: period ,completion: {[weak self] result in
+            switch result {
+            case .success(let stocks):
+                DispatchQueue.main.async {
+                    self?.stocks = stocks
+                    self?.tableView.reloadData()
+                }
+            case .failure(_):
+                break
+            }
+        })
     }
 }

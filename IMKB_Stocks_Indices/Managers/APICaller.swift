@@ -29,12 +29,12 @@ class APICaller {
         return UserDefaults.standard.string(forKey: "authorization")
     }
     
-    func fetchStocks(completion: @escaping (Result<StocksResponse, Error>) ->()) {
+    func fetchStocks(period: String, completion: @escaping (Result<StocksResponse, Error>) ->()) {
         
         guard let url = URL(string: Constant.stocksURL) else {return}
         
         let body = [
-            "period": aesCrypto(with: "all")
+            "period": aesCrypto(with: period)
         ]
         
         let bodyData = try? JSONSerialization.data(withJSONObject: body, options: .init())

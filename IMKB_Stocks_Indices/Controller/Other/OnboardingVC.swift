@@ -36,21 +36,6 @@ class OnboardingVC: UIViewController {
         view.addSubview(button)
         
         button.addTarget(self, action: #selector(didTapButton), for: .touchUpInside)
-        
-        AuthManager.shared.handshake(completion: {result in
-            if result {
-                APICaller.shared.fetchStocks(completion: {[weak self] result in
-                    switch result {
-                    case .success(let stocks):
-                        self?.stocks = stocks
-                    case .failure(_):
-                        break
-                    }
-                })
-            }else {
-                print("false")
-            }
-        })
     }
     
     override func viewDidLayoutSubviews() {
@@ -71,11 +56,21 @@ class OnboardingVC: UIViewController {
         )
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        AuthManager.shared.handshake(completion: {result in
+            if result {
+                print("OK")
+            }else {
+                print("Failed to handshake")
+            }
+        })
+    }
+    
     //MARK: Objc Funcs
     
     @objc private func didTapButton() {
-        guard let stocks = stocks else {return}
-        let vc = MainVC(stocks: stocks)
+        let vc = MainVC()
         let nav = UINavigationController(rootViewController: vc)
         nav.modalPresentationStyle = .fullScreen
         present(nav, animated: true)
