@@ -45,7 +45,9 @@ class MainVC: UIViewController {
         
         searchController.searchResultsUpdater = self
         searchController.searchBar.delegate = self
+        
         navigationItem.searchController = searchController
+        navigationItem.hidesSearchBarWhenScrolling = false
         
         view.addSubview(tableView)
         tableView.delegate = self
@@ -159,7 +161,6 @@ extension MainVC: UITableViewDelegate,UITableViewDataSource {
         
         return stackView
     }
-    
 }
 
 extension MainVC: UISearchResultsUpdating, UISearchBarDelegate {

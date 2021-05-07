@@ -28,7 +28,6 @@ final class DetailsInfoView: UIView {
     
     private let symbolLabel: UILabel = {
         let label = UILabel()
-        label.text = "HALKB"
         label.textAlignment = .left
         label.font = .systemFont(ofSize: 14, weight: .regular)
         return label
@@ -36,7 +35,6 @@ final class DetailsInfoView: UIView {
     
     private let priceLabel: UILabel = {
         let label = UILabel()
-        label.text = "2.4"
         label.textAlignment = .left
         label.font = .systemFont(ofSize: 14, weight: .regular)
         return label
@@ -44,7 +42,6 @@ final class DetailsInfoView: UIView {
     
     private let differenceLabel: UILabel = {
         let label = UILabel()
-        label.text = "0.02"
         label.textAlignment = .left
         label.font = .systemFont(ofSize: 14, weight: .regular)
         return label
@@ -52,7 +49,6 @@ final class DetailsInfoView: UIView {
     
     private let volumeLabel: UILabel = {
         let label = UILabel()
-        label.text = "580"
         label.textAlignment = .left
         label.font = .systemFont(ofSize: 14, weight: .regular)
         return label
@@ -60,7 +56,6 @@ final class DetailsInfoView: UIView {
     
     private let sellLabel: UILabel = {
         let label = UILabel()
-        label.text = "0.51"
         label.textAlignment = .left
         label.font = .systemFont(ofSize: 14, weight: .regular)
         return label
@@ -68,7 +63,6 @@ final class DetailsInfoView: UIView {
     
     private let buyLabel: UILabel = {
         let label = UILabel()
-        label.text = "0.54"
         label.textAlignment = .left
         label.font = .systemFont(ofSize: 14, weight: .regular)
         return label
@@ -76,15 +70,14 @@ final class DetailsInfoView: UIView {
     
     private let changeLabel: UILabel = {
         let label = UILabel()
-        label.text = ">"
         label.textAlignment = .right
+        label.text = "Değişim: "
         label.font = .systemFont(ofSize: 14, weight: .regular)
         return label
     }()
     
     private let dailyHighLabel: UILabel = {
         let label = UILabel()
-        label.text = "2.7"
         label.textAlignment = .right
         label.font = .systemFont(ofSize: 14, weight: .regular)
         return label
@@ -92,7 +85,6 @@ final class DetailsInfoView: UIView {
     
     private let dailyLowLabel: UILabel = {
         let label = UILabel()
-        label.text = "2.9"
         label.textAlignment = .right
         label.font = .systemFont(ofSize: 14, weight: .regular)
         return label
@@ -100,7 +92,6 @@ final class DetailsInfoView: UIView {
     
     private let totalLabel: UILabel = {
         let label = UILabel()
-        label.text = "116"
         label.textAlignment = .right
         label.font = .systemFont(ofSize: 14, weight: .regular)
         return label
@@ -108,7 +99,6 @@ final class DetailsInfoView: UIView {
     
     private let highLabel: UILabel = {
         let label = UILabel()
-        label.text = "2.45"
         label.textAlignment = .right
         label.font = .systemFont(ofSize: 14, weight: .regular)
         return label
@@ -116,7 +106,6 @@ final class DetailsInfoView: UIView {
     
     private let lowLabel: UILabel = {
         let label = UILabel()
-        label.text = "2.50"
         label.textAlignment = .right
         label.font = .systemFont(ofSize: 14, weight: .regular)
         return label
@@ -133,6 +122,20 @@ final class DetailsInfoView: UIView {
         stackView.axis = .vertical
         stackView.distribution = .fillEqually
         return stackView
+    }()
+    
+    private let changeView: UIView = {
+        let view = UIView()
+        
+        return view
+    }()
+    
+    private let changeIconImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.contentMode = .center
+        imageView.clipsToBounds = true
+        imageView.image = UIImage(systemName: "chevron.up")
+        return imageView
     }()
     
     override init(frame: CGRect) {
@@ -155,6 +158,7 @@ final class DetailsInfoView: UIView {
         rightStackView.addArrangedSubview(highLabel)
         rightStackView.addArrangedSubview(lowLabel)
         rightStackView.addArrangedSubview(changeLabel)
+        
     }
     
     required init?(coder: NSCoder) {
@@ -163,6 +167,7 @@ final class DetailsInfoView: UIView {
     
     override func layoutSubviews() {
         super.layoutSubviews()
+        
         leftStackView.frame = CGRect(
             x: 10,
             y: 0,
@@ -190,6 +195,11 @@ final class DetailsInfoView: UIView {
         totalLabel.text = "Adet: " + String(viewModel.count)
         highLabel.text = "Tavan: " + String(viewModel.maximum)
         lowLabel.text = "Taban: " + String(viewModel.minimum)
-        changeLabel.text = "Değişim: "
+        
+        if viewModel.isUp {
+            changeLabel.addImageWith(name: "up", behindText: true)
+        } else {
+            changeLabel.addImageWith(name: "down", behindText: true)
+        }
     }
 }

@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		0776DAD598B250D5E72F9D2C /* Pods_IMKB_Stocks_Indices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55D15616F7B35857C0C05A66 /* Pods_IMKB_Stocks_Indices.framework */; };
 		B527DECD264412410075F169 /* MenuListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B527DECC264412410075F169 /* MenuListController.swift */; };
+		B5380A8426457D4F00FE7472 /* UILabel+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5380A8326457D4F00FE7472 /* UILabel+Extensions.swift */; };
+		B5380A8626457FD600FE7472 /* DetailsLineChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5380A8526457FD600FE7472 /* DetailsLineChartView.swift */; };
+		B5380A88264581BC00FE7472 /* Double+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5380A87264581BC00FE7472 /* Double+Extensions.swift */; };
 		B544E63426454E1100B2A59A /* StockDetailsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B544E63326454E1100B2A59A /* StockDetailsResponse.swift */; };
 		B544E6362645500F00B2A59A /* Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = B544E6352645500F00B2A59A /* Status.swift */; };
 		B544E638264557C300B2A59A /* BalloonMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B544E637264557C300B2A59A /* BalloonMaker.swift */; };
@@ -35,6 +38,9 @@
 /* Begin PBXFileReference section */
 		55D15616F7B35857C0C05A66 /* Pods_IMKB_Stocks_Indices.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_IMKB_Stocks_Indices.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B527DECC264412410075F169 /* MenuListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuListController.swift; sourceTree = "<group>"; };
+		B5380A8326457D4F00FE7472 /* UILabel+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extensions.swift"; sourceTree = "<group>"; };
+		B5380A8526457FD600FE7472 /* DetailsLineChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsLineChartView.swift; sourceTree = "<group>"; };
+		B5380A87264581BC00FE7472 /* Double+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Extensions.swift"; sourceTree = "<group>"; };
 		B544E63326454E1100B2A59A /* StockDetailsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockDetailsResponse.swift; sourceTree = "<group>"; };
 		B544E6352645500F00B2A59A /* Status.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Status.swift; sourceTree = "<group>"; };
 		B544E637264557C300B2A59A /* BalloonMaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalloonMaker.swift; sourceTree = "<group>"; };
@@ -169,6 +175,8 @@
 			isa = PBXGroup;
 			children = (
 				B5F95CC72642D8110078B38A /* UIView+Extensions.swift */,
+				B5380A8326457D4F00FE7472 /* UILabel+Extensions.swift */,
+				B5380A87264581BC00FE7472 /* Double+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -207,6 +215,7 @@
 				B5F95CD726432A2A0078B38A /* DetailsVC.swift */,
 				B5F95CD926432B580078B38A /* DetailsInfoView.swift */,
 				B527DECC264412410075F169 /* MenuListController.swift */,
+				B5380A8526457FD600FE7472 /* DetailsLineChartView.swift */,
 			);
 			path = Other;
 			sourceTree = "<group>";
@@ -349,8 +358,11 @@
 				B5F95CD326431ACC0078B38A /* StocksTableViewCell.swift in Sources */,
 				B5F95CC82642D8110078B38A /* UIView+Extensions.swift in Sources */,
 				B5F95CAB2642D2330078B38A /* AppDelegate.swift in Sources */,
+				B5380A8426457D4F00FE7472 /* UILabel+Extensions.swift in Sources */,
+				B5380A8626457FD600FE7472 /* DetailsLineChartView.swift in Sources */,
 				B5F95CAD2642D2330078B38A /* SceneDelegate.swift in Sources */,
 				B544E638264557C300B2A59A /* BalloonMaker.swift in Sources */,
+				B5380A88264581BC00FE7472 /* Double+Extensions.swift in Sources */,
 				B5F95CD826432A2A0078B38A /* DetailsVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
