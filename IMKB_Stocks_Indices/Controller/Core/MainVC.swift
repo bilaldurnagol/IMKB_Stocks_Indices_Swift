@@ -7,19 +7,31 @@
 
 import UIKit
 import SideMenu
+import CryptoSwift
 
 
 class MainVC: UIViewController {
     
     private var stocks: StocksResponse?
     
+    private var filteredStocks = [Stock]()
+    
+    var isSearchBarEmpty: Bool {
+        return searchController.searchBar.text?.isEmpty ?? true
+    }
+    
+    var isFiltering: Bool {
+        return searchController.isActive && !isSearchBarEmpty
+    }
+    
     var period = "all"
     
     private let searchController: UISearchController = {
-        let vc = UISearchController(searchResultsController: SearchResultsVC())
+        let vc = UISearchController(searchResultsController: nil)
         vc.searchBar.placeholder = "Ara"
         vc.searchBar.searchBarStyle = .minimal
         vc.definesPresentationContext = true
+        vc.obscuresBackgroundDuringPresentation = false
         vc.searchBar.sizeToFit()
         return vc
     }()
@@ -70,6 +82,15 @@ class MainVC: UIViewController {
         tableView.frame = view.bounds
     }
     
+    func filterContentForSearchText(_ searchText: String) {
+
+        filteredStocks = (stocks?.stocks.filter { (stock: Stock) -> Bool in
+            return stock.symbol.aesDecrypt().lowercased().contains(searchText.lowercased())
+        })!
+
+      tableView.reloadData()
+    }
+    
     //navigation bar
     private func setNavbar() {
         title = "IMKB Hisse Senetleri/Endeksler"
@@ -92,7 +113,6 @@ class MainVC: UIViewController {
         SideMenuManager.default.addPanGestureToPresent(toView: self.view)
     }
     
-    
     //MARK: - objc
     
     @objc private func didTapMenu() {
@@ -105,11 +125,14 @@ class MainVC: UIViewController {
 
 extension MainVC: UITableViewDelegate,UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if isFiltering {
+            return filteredStocks.count
+        }
         return stocks?.stocks.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let stock = stocks?.stocks[indexPath.row]
+//        guard let stock = stocks?.stocks[indexPath.row] else {return UITableViewCell()}
         
         guard let cell = tableView.dequeueReusableCell(
             withIdentifier: StocksTableViewCell.identifier,
@@ -123,6 +146,13 @@ extension MainVC: UITableViewDelegate,UITableViewDataSource {
             cell.backgroundColor = .systemBackground
         } else {
             cell.backgroundColor = .secondarySystemBackground
+        }
+        
+        let stock: Stock
+        if isFiltering {
+            stock = filteredStocks[indexPath.row]
+        } else {
+            stock = (stocks?.stocks[indexPath.row])!
         }
         
         cell.configure(stock: stock)
@@ -177,7 +207,8 @@ extension MainVC: UITableViewDelegate,UITableViewDataSource {
 
 extension MainVC: UISearchResultsUpdating, UISearchBarDelegate {
     func updateSearchResults(for searchController: UISearchController) {
-        
+        let searchBar = searchController.searchBar
+        filterContentForSearchText(searchBar.text!)
     }
 }
 
