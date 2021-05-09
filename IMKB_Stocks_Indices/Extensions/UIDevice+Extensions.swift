@@ -8,6 +8,7 @@ import UIKit
 import SystemConfiguration
 
 public extension UIDevice {
+    ///get the device name for the handshake
     static let modelName: String = {
         var systemInfo = utsname()
         uname(&systemInfo)

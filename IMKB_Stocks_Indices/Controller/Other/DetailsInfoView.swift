@@ -167,14 +167,12 @@ final class DetailsInfoView: UIView {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        
         leftStackView.frame = CGRect(
             x: 10,
             y: 0,
             width: width/2-10,
             height: height
         )
-        
         rightStackView.frame = CGRect(
             x: leftStackView.right,
             y: 0,
@@ -184,7 +182,7 @@ final class DetailsInfoView: UIView {
     }
     
     func configure(with viewModel: DetailsInfoViewVM) {
-        symbolLabel.text = "Sembol: " + AesCryptoManager.shared.aesDecrypt(symbol: viewModel.symbol)
+        symbolLabel.text = "Sembol: " + viewModel.symbol.aesDecrypt()
         priceLabel.text = "Fiyat: " + String(viewModel.price)
         differenceLabel.text = "% Fark: " + String(viewModel.difference)
         volumeLabel.text = "Hacim: " + String(viewModel.volume)

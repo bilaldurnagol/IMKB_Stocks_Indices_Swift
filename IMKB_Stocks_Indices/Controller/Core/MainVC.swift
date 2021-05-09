@@ -9,22 +9,15 @@ import UIKit
 import SideMenu
 import CryptoSwift
 
-
 class MainVC: UIViewController {
-    
-    private var stocks: StocksResponse?
-    
-    private var filteredStocks = [Stock]()
-    
-    var isSearchBarEmpty: Bool {
-        return searchController.searchBar.text?.isEmpty ?? true
-    }
-    
-    var isFiltering: Bool {
-        return searchController.isActive && !isSearchBarEmpty
-    }
-    
-    var period = "all"
+    private let spinner: UIActivityIndicatorView = {
+        let spinner = UIActivityIndicatorView()
+        spinner.translatesAutoresizingMaskIntoConstraints = false
+        spinner.style = .large
+        spinner.color = .label
+        spinner.hidesWhenStopped = true
+        return spinner
+    }()
     
     private let searchController: UISearchController = {
         let vc = UISearchController(searchResultsController: nil)
@@ -38,36 +31,41 @@ class MainVC: UIViewController {
     
     private let tableView: UITableView = {
         let tableView = UITableView()
-        tableView.register(StocksTableViewCell.self, forCellReuseIdentifier: StocksTableViewCell.identifier)
+        tableView.register(StocksTableViewCell.self,
+                           forCellReuseIdentifier: StocksTableViewCell.identifier)
+        tableView.isHidden = true
         return tableView
     }()
     
     var menu: SideMenuNavigationController?
     
+    private var stocks: [Stock]?
+    private var filteredStocks = [Stock]()
+    
+    var isSearchBarEmpty: Bool {
+        return searchController.searchBar.text?.isEmpty ?? true
+    }
+    var isFiltering: Bool {
+        return searchController.isActive && !isSearchBarEmpty
+    }
+    var period = "all"
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setNavbar()
-        view.backgroundColor = .systemBackground
+        setupNavbar()
+        configure()
         
-        searchController.searchResultsUpdater = self
-        searchController.searchBar.delegate = self
-        
-        navigationItem.searchController = searchController
-        navigationItem.hidesSearchBarWhenScrolling = false
-        
-        view.addSubview(tableView)
-        tableView.delegate = self
-        tableView.dataSource = self
         let vc = MenuListController()
         vc.delegate = self
         menu = SideMenuNavigationController(rootViewController: vc)
-        setMenu()
+        setupMenu()
         
         APICaller.shared.fetchStocks(period: period ,completion: {[weak self] result in
             switch result {
             case .success(let stocks):
                 DispatchQueue.main.async {
+                    self?.spinner.stopAnimating()
+                    self?.tableView.isHidden = false
                     self?.stocks = stocks
                     self?.tableView.reloadData()
                 }
@@ -80,19 +78,38 @@ class MainVC: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         tableView.frame = view.bounds
+        spinner.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
+        spinner.center = view.center
     }
     
+    // search stocks
     func filterContentForSearchText(_ searchText: String) {
-
-        filteredStocks = (stocks?.stocks.filter { (stock: Stock) -> Bool in
-            return stock.symbol.aesDecrypt().lowercased().contains(searchText.lowercased())
+        filteredStocks = (stocks?.filter { (stock: Stock) -> Bool in
+            return stock.symbol.lowercased().contains(searchText.lowercased())
         })!
-
-      tableView.reloadData()
+        tableView.reloadData()
     }
     
-    //navigation bar
-    private func setNavbar() {
+    //MARK: - Configure UI
+    
+    //setup view
+    private func configure() {
+        view.backgroundColor = .systemBackground
+        
+        searchController.searchResultsUpdater = self
+        searchController.searchBar.delegate = self
+        
+        tableView.delegate = self
+        tableView.dataSource = self
+        
+        view.addSubview(tableView)
+        view.addSubview(spinner)
+        
+        spinner.startAnimating()
+    }
+    
+    //setup navigation bar
+    private func setupNavbar() {
         title = "IMKB Hisse Senetleri/Endeksler"
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(
@@ -102,57 +119,64 @@ class MainVC: UIViewController {
             action: #selector(didTapMenu)
         )
         navigationItem.leftBarButtonItem?.tintColor = .label
+        navigationItem.searchController = searchController
+        navigationItem.hidesSearchBarWhenScrolling = false
     }
     
-    //menu
-    private func setMenu() {
+    //setup menu
+    private func setupMenu() {
         menu?.leftSide = true
         menu?.setNavigationBarHidden(true, animated: true)
-        //slide left touch
+        ///slide left touch
         SideMenuManager.default.leftMenuNavigationController = menu
         SideMenuManager.default.addPanGestureToPresent(toView: self.view)
     }
     
-    //MARK: - objc
+    //MARK: - Objc funcs
     
     @objc private func didTapMenu() {
         let vc = MenuListController()
         vc.delegate = self
         present(menu!, animated: true)
-        
     }
 }
 
+//MARK: - Setup TableView
+
 extension MainVC: UITableViewDelegate,UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if isFiltering {
+        if isFiltering
+        {
             return filteredStocks.count
         }
-        return stocks?.stocks.count ?? 0
+        return stocks?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        guard let stock = stocks?.stocks[indexPath.row] else {return UITableViewCell()}
-        
         guard let cell = tableView.dequeueReusableCell(
             withIdentifier: StocksTableViewCell.identifier,
             for: indexPath
         ) as? StocksTableViewCell
-        else {
+        else
+        {
             return UITableViewCell()
         }
         
-        if indexPath.row%2 == 0 {
+        if indexPath.row%2 == 0
+        {
             cell.backgroundColor = .systemBackground
-        } else {
+        } else
+        {
             cell.backgroundColor = .secondarySystemBackground
         }
         
         let stock: Stock
-        if isFiltering {
+        if isFiltering
+        {
             stock = filteredStocks[indexPath.row]
-        } else {
-            stock = (stocks?.stocks[indexPath.row])!
+        } else
+        {
+            stock = (stocks?[indexPath.row])!
         }
         
         cell.configure(stock: stock)
@@ -163,7 +187,7 @@ extension MainVC: UITableViewDelegate,UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        guard let stock = stocks?.stocks[indexPath.row] else {return}
+        guard let stock = stocks?[indexPath.row] else {return}
         let id = String(stock.id)
         APICaller.shared.getDetailsStock(with: id, completion: {[weak self] result in
             switch result {
@@ -205,6 +229,7 @@ extension MainVC: UITableViewDelegate,UITableViewDataSource {
     }
 }
 
+//MARK: - Setup Search Bar
 extension MainVC: UISearchResultsUpdating, UISearchBarDelegate {
     func updateSearchResults(for searchController: UISearchController) {
         let searchBar = searchController.searchBar
@@ -212,7 +237,9 @@ extension MainVC: UISearchResultsUpdating, UISearchBarDelegate {
     }
 }
 
+//MARK: - Menu Actions
 extension MainVC: MenuListControllerDelegate {
+    //click menu cell actions
     func clickedMenu(with period: String) {
         self.period = period
         APICaller.shared.fetchStocks(period: period ,completion: {[weak self] result in

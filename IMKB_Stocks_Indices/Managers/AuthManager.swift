@@ -24,17 +24,19 @@ final class AuthManager {
     enum ApiError: Error {
         case failedToGetData
     }
-     
+    
+    //verification with handshake method
     func handshake(completion: @escaping (Bool) ->()) {
         guard let url = URL(string: Contants.handshakeURL) else { return }
         
-        let body = [
-            "deviceId":Contants.deviceId,
-            "systemVersion":Contants.systemVersion,
-            "platformName":Contants.platformName,
-            "deviceModel":Contants.deviceModel,
-            "manifacturer":Contants.manifacturer
-        ]
+        let body =
+            [
+                "deviceId": Contants.deviceId,
+                "systemVersion": Contants.systemVersion,
+                "platformName": Contants.platformName,
+                "deviceModel": Contants.deviceModel,
+                "manifacturer": Contants.manifacturer
+            ]
         
         let bodyData = try? JSONSerialization.data(withJSONObject: body, options: .init())
         
@@ -63,6 +65,7 @@ final class AuthManager {
             }
         }).resume()
     }
+    
     
     private func fetchKeys(result: AuthResponse) {
         UserDefaults.standard.setValue(result.authorization, forKey: "authorization")

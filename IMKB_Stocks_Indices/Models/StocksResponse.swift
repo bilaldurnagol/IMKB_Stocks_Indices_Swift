@@ -21,5 +21,5 @@ struct Stock: Codable {
     let offer: Float
     let price: Float
     let volume: Float
-    let symbol: String
+    var symbol: String
 }

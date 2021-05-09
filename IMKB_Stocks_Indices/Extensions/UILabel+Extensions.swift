@@ -9,17 +9,15 @@ import UIKit
 
 
 extension UILabel {
-
+    ///Add image to label func
     func addImageWith(name: String, behindText: Bool) {
-
         let attachment = NSTextAttachment()
         attachment.image = UIImage(named: name)
         let attachmentString = NSAttributedString(attachment: attachment)
-
+        
         guard let txt = self.text else {
             return
         }
-
         if behindText {
             let strLabelText = NSMutableAttributedString(string: txt)
             strLabelText.append(attachmentString)
@@ -31,7 +29,7 @@ extension UILabel {
             self.attributedText = mutableAttachmentString
         }
     }
-
+    
     func removeImage() {
         let text = self.text
         self.attributedText = nil

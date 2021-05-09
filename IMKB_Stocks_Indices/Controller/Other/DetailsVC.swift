@@ -52,7 +52,7 @@ class DetailsVC: UIViewController {
             height: view.height/4*3 - view.safeAreaInsets.top
         )
     }
-    
+    //set values to labels
     private func configure() {
         guard let stock = stock else {return}
         

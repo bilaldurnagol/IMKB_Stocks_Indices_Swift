@@ -15,7 +15,6 @@ class DetailsLineChartView: UIView, ChartViewDelegate {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
         chart.delegate = self
         addSubview(chart)
     }
@@ -29,11 +28,10 @@ class DetailsLineChartView: UIView, ChartViewDelegate {
         chart.frame = bounds
     }
     
+    //setup charts
     func configure(with graphicData: [GraphicData]) {
-        //setup charts
-        
-        //i used this repo
-        //https://github.com/danielgindi/Charts/blob/master/ChartsDemo-iOS/Objective-C/Components/BalloonMarker.swift
+        /** i used this repo
+        https://github.com/danielgindi/Charts/blob/master/ChartsDemo-iOS/Objective-C/Components/BalloonMarker.swift **/
         
         let marker: BalloonMarker = BalloonMarker(
             color: UIColor.black,

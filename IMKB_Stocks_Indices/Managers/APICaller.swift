@@ -16,26 +16,26 @@ class APICaller {
         static let stocksURL = "https://mobilechallenge.veripark.com/api/stocks/list"
         static let detailsURL = "https://mobilechallenge.veripark.com/api/stocks/detail"
     }
-    
     private var aesKey: String? {
         return UserDefaults.standard.string(forKey: "aesKey")
     }
-    
     private var aesIV: String? {
         return UserDefaults.standard.string(forKey: "aesIV")
     }
-    
     private var authorization: String? {
         return UserDefaults.standard.string(forKey: "authorization")
     }
     
-    func fetchStocks(period: String, completion: @escaping (Result<StocksResponse, Error>) ->()) {
+    
+    //fetch all stocks
+    func fetchStocks(period: String, completion: @escaping (Result<[Stock], Error>) ->()) {
         
         guard let url = URL(string: Constant.stocksURL) else {return}
         
-        let body = [
-            "period": AesCryptoManager.shared.aesEncryption(with: period)
-        ]
+        let body =
+            [
+                "period": period.aesEncryption()
+            ]
         
         let bodyData = try? JSONSerialization.data(withJSONObject: body, options: .init())
         
@@ -48,11 +48,15 @@ class APICaller {
         
         URLSession.shared.dataTask(with: request, completionHandler: {data, _, error in
             guard let data = data, error == nil else {return}
-            
             do {
-                let result = try JSONDecoder().decode(StocksResponse.self, from: data)
+                let stocksResponse = try JSONDecoder().decode(StocksResponse.self, from: data)
                 
-                completion(.success(result))
+                let stocks = stocksResponse.stocks.map({ (stock) -> Stock in
+                    var modified = stock
+                    modified.symbol = stock.symbol.aesDecrypt()
+                    return modified
+                })
+                completion(.success(stocks))
             }catch
             {
                 completion(.failure(error))
@@ -60,13 +64,14 @@ class APICaller {
         }).resume()
     }
     
+    //get stock market details.
     func getDetailsStock(with id: String, completion: @escaping (Result<StockDetailsResponse, Error>) ->()) {
         
         guard let url = URL(string: Constant.detailsURL) else {return}
         
         let body = [
             
-            "id": AesCryptoManager.shared.aesEncryption(with: id)
+            "id": id.aesEncryption()
         ]
         
         let bodyData = try? JSONSerialization.data(withJSONObject: body, options: .init())
@@ -80,7 +85,6 @@ class APICaller {
         
         URLSession.shared.dataTask(with: request, completionHandler: {data, _, error in
             guard let data = data, error == nil else {return}
-            
             do {
                 let result = try JSONDecoder().decode(StockDetailsResponse.self, from: data)
                 completion(.success(result))

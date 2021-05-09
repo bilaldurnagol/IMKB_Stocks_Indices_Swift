@@ -29,6 +29,19 @@ class OnboardingVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        configure()
+
+        AuthManager.shared.handshake(completion: {result in
+            if result {
+                print("OK")
+            }else {
+                print("Failed to handshake")
+            }
+        })
+    }
+    
+    // setup view
+    private func configure() {
         title = "IMKB Hisse ve Endeksler"
         view.backgroundColor = .systemBackground
         
@@ -40,6 +53,7 @@ class OnboardingVC: UIViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
+        
         imageView.frame = CGRect(
             x: 0,
             y: 0,
@@ -56,19 +70,9 @@ class OnboardingVC: UIViewController {
         )
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        AuthManager.shared.handshake(completion: {result in
-            if result {
-                print("OK")
-            }else {
-                print("Failed to handshake")
-            }
-        })
-    }
-    
     //MARK: Objc Funcs
     
+    ///click button
     @objc private func didTapButton() {
         let vc = MainVC()
         let nav = UINavigationController(rootViewController: vc)
