@@ -60,22 +60,22 @@
 
  With this project, we can edit, crop and share photos on social media with presets filters.
 
-   <a href="https://github.com/bilaldurnagol/PhotoFilterRxSwift">
-    <img src="githubImages/screenshot1.png" alt="Logo" width="300" height="600">
+   <a href="https://github.com/bilaldurnagol/IMKB_Stocks_Indices_Swift">
+    <img src="Screenshots/screenshot1.png" alt="Logo" width="300" height="600">
   </a>
 
-   <a href="https://github.com/bilaldurnagol/PhotoFilterRxSwift">
-    <img src="githubImages/screenshot2.png" alt="Logo" width="300" height="600">
+   <a href="https://github.com/bilaldurnagol/IMKB_Stocks_Indices_Swift">
+    <img src="Screenshots/screenshot2.png" alt="Logo" width="300" height="600">
   </a>
   
-   <a href="https://github.com/bilaldurnagol/PhotoFilterRxSwift">
-    <img src="githubImages/screenshot3.png" alt="Logo" width="300" height="600">
+   <a href="https://github.com/bilaldurnagol/IMKB_Stocks_Indices_Swift">
+    <img src="Screenshots/screenshot3.png" alt="Logo" width="300" height="600">
   </a>
-     <a href="https://github.com/bilaldurnagol/PhotoFilterRxSwift">
-    <img src="githubImages/screenshot4.png" alt="Logo" width="300" height="600">
+     <a href="https://github.com/bilaldurnagol/IMKB_Stocks_Indices_Swift">
+    <img src="Screenshots/screenshot4.png" alt="Logo" width="300" height="600">
   </a>
-     <a href="https://github.com/bilaldurnagol/PhotoFilterRxSwift">
-    <img src="githubImages/screenshot5.png" alt="Logo" width="300" height="600">
+     <a href="https://github.com/bilaldurnagol/IMKB_Stocks_Indices_Swift">
+    <img src="Screenshots/screenshot5.png" alt="Logo" width="300" height="600">
   </a>
 
 Here's why:
