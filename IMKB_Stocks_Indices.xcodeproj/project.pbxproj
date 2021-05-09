@@ -17,6 +17,11 @@
 		B544E6362645500F00B2A59A /* Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = B544E6352645500F00B2A59A /* Status.swift */; };
 		B544E638264557C300B2A59A /* BalloonMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B544E637264557C300B2A59A /* BalloonMaker.swift */; };
 		B578F5032645DA820097A9C7 /* UIDevice+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B578F5022645DA820097A9C7 /* UIDevice+Extensions.swift */; };
+		B57C1C112648042B00BF7143 /* screenshot1.png in Resources */ = {isa = PBXBuildFile; fileRef = B57C1C102648042B00BF7143 /* screenshot1.png */; };
+		B57C1C152648043800BF7143 /* screenshot4.png in Resources */ = {isa = PBXBuildFile; fileRef = B57C1C122648043600BF7143 /* screenshot4.png */; };
+		B57C1C162648043800BF7143 /* screenshot3.png in Resources */ = {isa = PBXBuildFile; fileRef = B57C1C132648043700BF7143 /* screenshot3.png */; };
+		B57C1C172648043800BF7143 /* screenshot2.png in Resources */ = {isa = PBXBuildFile; fileRef = B57C1C142648043800BF7143 /* screenshot2.png */; };
+		B57C1C192648044400BF7143 /* screenshot5.png in Resources */ = {isa = PBXBuildFile; fileRef = B57C1C182648044400BF7143 /* screenshot5.png */; };
 		B58BD7852644690E00DFF724 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58BD7842644690E00DFF724 /* AuthManager.swift */; };
 		B58BD787264473BC00DFF724 /* AuthResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58BD786264473BC00DFF724 /* AuthResponse.swift */; };
 		B58BD78B2644826E00DFF724 /* APICaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58BD78A2644826E00DFF724 /* APICaller.swift */; };
@@ -46,6 +51,11 @@
 		B544E6352645500F00B2A59A /* Status.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Status.swift; sourceTree = "<group>"; };
 		B544E637264557C300B2A59A /* BalloonMaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalloonMaker.swift; sourceTree = "<group>"; };
 		B578F5022645DA820097A9C7 /* UIDevice+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice+Extensions.swift"; sourceTree = "<group>"; };
+		B57C1C102648042B00BF7143 /* screenshot1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = screenshot1.png; sourceTree = "<group>"; };
+		B57C1C122648043600BF7143 /* screenshot4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = screenshot4.png; sourceTree = "<group>"; };
+		B57C1C132648043700BF7143 /* screenshot3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = screenshot3.png; sourceTree = "<group>"; };
+		B57C1C142648043800BF7143 /* screenshot2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = screenshot2.png; sourceTree = "<group>"; };
+		B57C1C182648044400BF7143 /* screenshot5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = screenshot5.png; sourceTree = "<group>"; };
 		B58BD7842644690E00DFF724 /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
 		B58BD786264473BC00DFF724 /* AuthResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthResponse.swift; sourceTree = "<group>"; };
 		B58BD78A2644826E00DFF724 /* APICaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICaller.swift; sourceTree = "<group>"; };
@@ -97,9 +107,22 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		B57C1C052648031600BF7143 /* Screenshots */ = {
+			isa = PBXGroup;
+			children = (
+				B57C1C182648044400BF7143 /* screenshot5.png */,
+				B57C1C142648043800BF7143 /* screenshot2.png */,
+				B57C1C132648043700BF7143 /* screenshot3.png */,
+				B57C1C122648043600BF7143 /* screenshot4.png */,
+				B57C1C102648042B00BF7143 /* screenshot1.png */,
+			);
+			path = Screenshots;
+			sourceTree = "<group>";
+		};
 		B5F95C9E2642D2330078B38A = {
 			isa = PBXGroup;
 			children = (
+				B57C1C052648031600BF7143 /* Screenshots */,
 				B5F95CA92642D2330078B38A /* IMKB_Stocks_Indices */,
 				B5F95CA82642D2330078B38A /* Products */,
 				4614CAB216A9E09E97A12FAC /* Pods */,
@@ -288,6 +311,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				B5F95CB72642D2360078B38A /* LaunchScreen.storyboard in Resources */,
+				B57C1C152648043800BF7143 /* screenshot4.png in Resources */,
+				B57C1C112648042B00BF7143 /* screenshot1.png in Resources */,
+				B57C1C172648043800BF7143 /* screenshot2.png in Resources */,
+				B57C1C162648043800BF7143 /* screenshot3.png in Resources */,
+				B57C1C192648044400BF7143 /* screenshot5.png in Resources */,
 				B5F95CB42642D2360078B38A /* Assets.xcassets in Resources */,
 				B5F95CB22642D2330078B38A /* Main.storyboard in Resources */,
 			);
