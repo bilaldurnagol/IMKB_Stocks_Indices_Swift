@@ -156,4 +156,4 @@ Distributed under the MIT License. See `LICENSE` for more information.
 <br/>
   
 
-Project Link: [https://github.com/bilaldurnagol/PhotoFilterRxSwift](https://github.com/bilaldurnagol/IMKB_Stocks_Indices_Swift)
+Project Link: [https://github.com/bilaldurnagol/IMKB_Stocks_Indices_Swift](https://github.com/bilaldurnagol/IMKB_Stocks_Indices_Swift)
